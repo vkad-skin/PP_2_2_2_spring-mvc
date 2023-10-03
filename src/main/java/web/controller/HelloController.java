@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 public class HelloController {
 
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
     public HelloController(CarService carService) {
@@ -38,9 +38,7 @@ public class HelloController {
     public String printCars(@RequestParam(value = "count", defaultValue = "5") int count
             , Model model) {
 
-        List<Car> cars = carService.getCars();
-
-        model.addAttribute("cars", carService.getCountCar(cars, count));
+        model.addAttribute("cars", carService.getCountCar(count));
 
         return "cars";
     }

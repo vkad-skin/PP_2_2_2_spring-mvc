@@ -10,15 +10,6 @@ import java.util.List;
 public class CarDAOImpl implements CarDAO {
 
     @Override
-    public List<Car> getCountCar(List<Car> cars, int count) {
-        if (count >= 5 || count < 1) {
-            return cars;
-        } else {
-            return cars.stream().limit(count).toList();
-        }
-    }
-
-    @Override
     public List<Car> getCars() {
         List<Car> cars = new ArrayList<>();
 

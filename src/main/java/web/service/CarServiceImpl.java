@@ -10,7 +10,7 @@ import web.model.Car;
 @Service
 public class CarServiceImpl implements CarService {
 
-    private CarDAO carDAO;
+    private final CarDAO carDAO;
 
     @Autowired
     public CarServiceImpl(CarDAO carDAO) {
@@ -18,8 +18,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getCountCar(List<Car> cars, int count) {
-        return carDAO.getCountCar(cars, count);
+    public List<Car> getCountCar(int count) {
+        if (count >= 5 || count < 1) {
+            return getCars();
+        } else {
+            return getCars().stream().limit(count).toList();
+        }
     }
 
     @Override
